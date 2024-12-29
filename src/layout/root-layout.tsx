@@ -1,7 +1,7 @@
 import { AppSidebar } from "@/components/layout/app-sidebar";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import { Outlet } from "react-router";
-import TopBar from "./topbar";
+import TopBar from "../components/layout/topbar";
 
 export default function RootLayout() {
   return (

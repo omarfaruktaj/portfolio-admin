@@ -1,21 +1,16 @@
 import api from "@/config/api";
 import { LoginSchemaType, RegisterSchemaType } from "@/schemas/auth";
+import { User } from "@/types";
 import axios, { AxiosError } from "axios";
 
 export type LoginResponseData = {
-  token: string;
-  user: {
-    id: string;
-    email: string;
-  };
+  accessToken: string;
+  user: User;
 };
 
 export const registerUser = async (formData: RegisterSchemaType) => {
   try {
-    const { data } = await axios.post(
-      "/auth/register",
-      formData
-    );
+    const { data } = await axios.post("/auth/register", formData);
 
     return data;
   } catch (error) {
@@ -35,10 +30,8 @@ export const loginUser = async (
   formData: LoginSchemaType
 ): Promise<LoginResponseData> => {
   try {
-    const { data } = await api.post(
-      "/auth/login",
-      formData
-    );
+    const { data } = await api.post("/auth/login", formData);
+
     return data;
   } catch (error) {
     if (error instanceof AxiosError) {
@@ -53,25 +46,10 @@ export const loginUser = async (
   }
 };
 
-export interface UserInterface {
-  _id: string;
-  name: string;
-  email: string;
-}
-
-export const getMe = async (): Promise<UserInterface> => {
+export const getMe = async (): Promise<User> => {
   try {
-    const token = localStorage.getItem("token");
-    const { data } = await axios.get(
-      "auth/me",
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
-
-    return data.data;
+    const { data } = await api.get("auth/profile");
+    return data;
   } catch (error) {
     if (error instanceof AxiosError) {
       if (error.response && error.response.data) {

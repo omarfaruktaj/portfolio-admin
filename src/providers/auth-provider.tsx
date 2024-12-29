@@ -1,19 +1,14 @@
-import { getMe, UserInterface } from "@/actions/auth";
-import { createContext, ReactNode, useEffect, useState } from "react";
-
-interface AuthInfoInterface {
-  isLoading: boolean;
-  user: UserInterface | null;
-}
-// AuthContext has been moved to a separate file
-export const AuthContext = createContext<AuthInfoInterface | null>(null);
+import { getMe } from "@/actions/auth";
+import { AuthContext, AuthInfoInterface } from "@/contexts";
+import { User } from "@/types";
+import { ReactNode, useEffect, useState } from "react";
 
 export default function AuthProvider({ children }: { children: ReactNode }) {
-  const [user, setUser] = useState<UserInterface | null>(null);
+  const [user, setUser] = useState<User | null>(null);
   const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
-    const token = localStorage.getItem("access-token");
+    const token = localStorage.getItem("access_token");
     if (token) {
       fetchUser();
     } else {
@@ -26,6 +21,7 @@ export default function AuthProvider({ children }: { children: ReactNode }) {
     setLoading(true);
     try {
       const data = await getMe();
+      console.log(data);
       setUser(data);
       setLoading(false);
     } catch (error) {
