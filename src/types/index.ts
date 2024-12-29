@@ -11,3 +11,15 @@ export type User = {
   createdAt: Date;
   updatedAt: Date;
 };
+
+export type Project = {
+  title: string;
+  description: string;
+  technologies: string[];
+  link: string;
+  githubUrl?: string;
+  frontendGithubUrl?: string;
+  backendGithubUrl?: string;
+  isFullStack: boolean;
+  imageUrl: string;
+};
