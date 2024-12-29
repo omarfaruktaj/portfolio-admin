@@ -1,8 +1,8 @@
 import api from "@/config/api";
-import { Project } from "@/types";
+import { Project, ProjectResponse } from "@/types";
 import { AxiosError } from "axios";
 
-export const getProjects = async (): Promise<Project> => {
+export const getProjects = async (): Promise<ProjectResponse[]> => {
   try {
     const { data } = await api.get("/projects");
     return data;
@@ -19,7 +19,9 @@ export const getProjects = async (): Promise<Project> => {
   }
 };
 
-export const createProject = async (formData: Project): Promise<Project> => {
+export const createProject = async (
+  formData: Project
+): Promise<ProjectResponse> => {
   try {
     const { data } = await api.post("/projects", formData);
     return data;
@@ -39,7 +41,7 @@ export const createProject = async (formData: Project): Promise<Project> => {
 export const updateProject = async (
   id: string,
   formData: Project
-): Promise<Project> => {
+): Promise<ProjectResponse> => {
   try {
     const { data } = await api.put(`/projects/${id}`, formData);
     return data;
@@ -56,7 +58,7 @@ export const updateProject = async (
   }
 };
 
-export const deleteProject = async (id: string): Promise<Project> => {
+export const deleteProject = async (id: string): Promise<ProjectResponse> => {
   try {
     const { data } = await api.delete(`/projects/${id}`);
     return data;

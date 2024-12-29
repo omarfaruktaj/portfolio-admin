@@ -23,3 +23,16 @@ export type Project = {
   isFullStack: boolean;
   imageUrl: string;
 };
+
+export type ProjectResponse = {
+  _id: string;
+  title: string;
+  description: string;
+  technologies: string[];
+  link: string;
+  githubUrl?: string;
+  frontendGithubUrl?: string;
+  backendGithubUrl?: string;
+  isFullStack: boolean;
+  imageUrl: string;
+};
