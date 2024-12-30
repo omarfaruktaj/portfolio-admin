@@ -25,20 +25,19 @@ export default function Projects() {
   }
 
   return (
-    <div className="py-10 px-6 sm:px-8 lg:px-12 max-w-7xl mx-auto">
-      <div className="flex items-center justify-between pb-8">
-        <h1 className="text-3xl font-semibold text-gray-900">Projects</h1>
+    <div className="container mx-auto p-6">
+      <div className="flex justify-between items-center mb-6">
+        <h1 className="text-4xl font-bold text-gray-800">Projects</h1>
         <Button
           onClick={() => navigate("/projects/new")}
-          variant="outline"
-          className="flex items-center space-x-1 rounded-lg "
+          className="flex items-center space-x-1"
         >
-          <Plus className="h-5 w-5 text-primary" />
-          <span className="text-sm font-medium">New project</span>
+          <Plus className="h-6 w-6" />
+          <span>New Project</span>
         </Button>
       </div>
 
-      <div className="shadow-sm rounded-lg overflow-hidden bg-white">
+      <div className="bg-white shadow rounded-lg p-4">
         <DataTable columns={columns} data={data} />
       </div>
     </div>

@@ -1,15 +1,15 @@
-import { getBlogPosts } from "@/actions/blogs";
-import { columns } from "@/components/blog/table/column";
+import { getSkills } from "@/actions/skill";
+import { columns } from "@/components/skill/table/column";
 import { Button } from "@/components/ui/button";
 import { DataTable } from "@/components/ui/data-table";
 import { useQuery } from "@tanstack/react-query";
 import { Plus } from "lucide-react";
 import { useNavigate } from "react-router";
 
-export default function Blog() {
+export default function Skills() {
   const { isLoading, data, isError } = useQuery({
-    queryKey: ["blogs"],
-    queryFn: getBlogPosts,
+    queryKey: ["skills"],
+    queryFn: getSkills,
   });
   const navigate = useNavigate();
 
@@ -26,14 +26,14 @@ export default function Blog() {
 
   return (
     <div className="container mx-auto p-6">
-      <div className="flex justify-between items-center mb-6">
-        <h1 className="text-4xl font-bold text-gray-800">Blog</h1>
+      <div className="flex items-center justify-between mb-6">
+        <h1 className="text-4xl font-bold text-gray-800">Skills</h1>
         <Button
-          onClick={() => navigate("/blogs/new")}
+          onClick={() => navigate("/skills/new")}
           className="flex items-center space-x-1"
         >
-          <Plus className="h-5 w-5" />
-          <span>New Blog</span>
+          <Plus className="h-6 w-6" />
+          <span>Add Skill</span>
         </Button>
       </div>
 

@@ -58,3 +58,16 @@ export type BlogPostResponse = {
   updatedAt: Date;
   image: string;
 };
+
+export type Skill = {
+  name: string;
+  category: string;
+  proficiency: string;
+};
+
+export type SkillResponse = {
+  _id: string;
+  name: string;
+  category: string;
+  proficiency: string;
+};

@@ -5,7 +5,7 @@ import { useState } from "react";
 import { Edit, MoreHorizontal, Trash } from "lucide-react";
 import { toast } from "sonner";
 
-import { deleteProject } from "@/actions/projects";
+import { deleteSkill } from "@/actions/skill";
 import AlertModal from "@/components/alert-model";
 import Modal from "@/components/model";
 import { Button } from "@/components/ui/button";
@@ -17,33 +17,33 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { ProjectResponse } from "@/types";
+import { SkillResponse } from "@/types";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import ProjectForm from "../project-form";
+import SkillForm from "../skill-form";
 
-export function CellAction({ data }: { data: ProjectResponse }) {
+export function CellAction({ data }: { data: SkillResponse }) {
   const [open, setOpen] = useState(false);
   const [openUpdateModel, setOpenUpdateModel] = useState(false);
 
   const queryClient = useQueryClient();
 
   const mutation = useMutation({
-    mutationFn: deleteProject,
+    mutationFn: deleteSkill,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["projects"] });
-      toast.success("Project Deleted Successfully");
+      queryClient.invalidateQueries({ queryKey: ["skills"] });
+      toast.success("Skill Deleted Successfully");
     },
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     onError: (error: any) => {
       toast.error(
         error?.response?.data?.message ||
-          "Project Deleting failed. Please try again."
+          "Skill Deleting failed. Please try again."
       );
     },
   });
 
   const onDelete = () => {
-    mutation.mutate(data._id);
+    mutation.mutate(data._id as string);
   };
 
   if (mutation.isPending) return <div>Deleting...</div>;
@@ -51,20 +51,20 @@ export function CellAction({ data }: { data: ProjectResponse }) {
   return (
     <>
       <AlertModal
-        description="This action can not be undo."
+        description="This action can not be undone."
         isOpen={open}
         onClose={() => setOpen(false)}
         onConfirm={onDelete}
       />
       <Modal
-        title="Update Project"
+        title="Update Skill"
         onClose={() => setOpenUpdateModel(false)}
         isOpen={openUpdateModel}
-        className="h-5/6"
+        className="min-h-5/6"
       >
         <ScrollArea className="h-full ">
           <div className="p-4">
-            <ProjectForm
+            <SkillForm
               initialData={data}
               onSuccess={() => {
                 setOpenUpdateModel(false);

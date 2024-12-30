@@ -225,11 +225,63 @@ const loginSchema = z.object({
 
   password: z.string().min(6, "Password must be at least 6 characters"),
 });
+const experienceSchema = z.object({
+  jobTitle: z
+    .string()
+    .min(2, { message: "Job title must be at least 2 characters long" })
+    .max(100, { message: "Job title must not exceed 100 characters" })
+    .trim(),
+
+  companyName: z
+    .string()
+    .min(2, { message: "Company name must be at least 2 characters long" })
+    .max(200, { message: "Company name must not exceed 200 characters" })
+    .trim(),
+
+  location: z
+    .string()
+    .max(200, { message: "Location must not exceed 200 characters" })
+    .optional(),
+
+  startDate: z.coerce.date().refine((date) => date <= new Date(), {
+    message: "Start date cannot be in the future",
+  }),
+
+  endDate: z.coerce
+    .date()
+    .optional()
+    .refine((date) => (date ? date <= new Date() : true), {
+      message: "End date cannot be in the future",
+    })
+    .nullable(),
+
+  description: z
+    .string()
+    .min(10, { message: "Description must be at least 10 characters long" })
+    .max(1000, { message: "Description must not exceed 1000 characters" })
+    .trim(),
+
+  technologies: z
+    .array(
+      z
+        .string()
+        .min(2, {
+          message: "Technology name must be at least 2 characters long",
+        })
+        .max(100, {
+          message: "Technology name must not exceed 100 characters",
+        })
+    )
+    .min(1, { message: "At least one technology must be provided" }),
+
+  isActive: z.boolean().optional(),
+});
 
 export {
   analyticsSchema,
   articleSchema,
   contactFormSchema,
+  experienceSchema,
   loginSchema,
   projectSchema,
   registerSchema,

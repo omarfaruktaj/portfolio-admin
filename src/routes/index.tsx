@@ -3,10 +3,12 @@ import RootLayout from "@/layout/root-layout";
 import Blog from "@/pages/blog";
 import CreateBlogPost from "@/pages/create-blog";
 import CreateProject from "@/pages/create-project";
+import CreateSkill from "@/pages/create-skill";
 import Home from "@/pages/home";
 import Login from "@/pages/login";
 import NotFound from "@/pages/not-found";
 import Projects from "@/pages/projects";
+import Skills from "@/pages/skills";
 import { createBrowserRouter } from "react-router";
 import PrivateRoute from "./private-route";
 
@@ -38,6 +40,14 @@ const router = createBrowserRouter([
       {
         path: "/blogs/new",
         element: <CreateBlogPost />,
+      },
+      {
+        path: "/skills",
+        element: <Skills />,
+      },
+      {
+        path: "/skills/new",
+        element: <CreateSkill />,
       },
     ],
   },
