@@ -11,12 +11,12 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import useAuth from "@/hooks/use-auth";
-import { loginSchema } from "@/schemas/auth";
+import { loginSchema } from "@/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { useLocation, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 import { toast } from "sonner";
 import { z } from "zod";
 
@@ -25,15 +25,12 @@ export type LoginFormData = z.infer<typeof loginSchema>;
 export default function LoginForm() {
   const navigate = useNavigate();
   const auth = useAuth();
-  const location = useLocation();
-
-  const from = location?.state?.from?.pathname || "/";
 
   useEffect(() => {
     if (auth?.user) {
-      navigate(from, { replace: true });
+      navigate("/", { replace: true });
     }
-  }, [auth?.user, from, navigate]);
+  }, [auth?.user, navigate]);
 
   const mutation = useMutation({
     mutationFn: loginUser,

@@ -41,16 +41,49 @@ const projectSchema = z.object({
 const articleSchema = z.object({
   title: z
     .string()
-    .min(5, { message: "Article title must be at least 5 characters long" }),
-  content: z.string().min(20, {
-    message: "Article content must be at least 20 characters long",
-  }),
-  tags: z.array(
-    z.string().min(1, { message: "At least one tag must be specified" })
+    .min(5, { message: "Article title must be at least 5 characters long" })
+    .trim()
+    .refine((value) => value.length > 0, {
+      message: "Article title is required",
+    }),
+
+  content: z
+    .string()
+    .min(20, { message: "Article content must be at least 20 characters long" })
+    .refine((value) => value.length > 0, {
+      message: "Article content is required",
+    }),
+
+  tags: z.array(optionSchema).optional(),
+
+  category: z.enum(
+    [
+      "Technology",
+      "Health",
+      "Education",
+      "Business",
+      "Entertainment",
+      "Lifestyle",
+      "Science",
+      "Travel",
+      "Finance",
+      "Food",
+      "Sports",
+      "Politics",
+      "Art",
+      "Music",
+      "Environment",
+      "Social Issues",
+      "Books",
+      "Movies",
+      "Gaming",
+    ],
+    {
+      errorMap: () => ({ message: "Category is required" }),
+    }
   ),
-  author: z.string().uuid({ message: "Author ID must be a valid UUID" }),
-  isPublished: z.boolean().optional().default(false),
-  publication_date: z.date().optional().default(new Date()),
+
+  image: z.string().url().optional(),
 });
 
 const testimonialSchema = z.object({

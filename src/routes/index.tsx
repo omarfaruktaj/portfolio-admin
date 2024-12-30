@@ -1,5 +1,7 @@
 import AuthLayout from "@/layout/auth-layout";
 import RootLayout from "@/layout/root-layout";
+import Blog from "@/pages/blog";
+import CreateBlogPost from "@/pages/create-blog";
 import CreateProject from "@/pages/create-project";
 import Home from "@/pages/home";
 import Login from "@/pages/login";
@@ -28,6 +30,14 @@ const router = createBrowserRouter([
       {
         path: "/projects/new",
         element: <CreateProject />,
+      },
+      {
+        path: "/blogs",
+        element: <Blog />,
+      },
+      {
+        path: "/blogs/new",
+        element: <CreateBlogPost />,
       },
     ],
   },

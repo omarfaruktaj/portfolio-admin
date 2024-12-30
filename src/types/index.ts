@@ -1,4 +1,5 @@
 export type User = {
+  _id: string;
   firstName: string;
   lastName: string;
   email: string;
@@ -35,4 +36,25 @@ export type ProjectResponse = {
   backendGithubUrl?: string;
   isFullStack: boolean;
   imageUrl: string;
+};
+
+export type BlogPost = {
+  title: string;
+  content: string;
+  tags: string[];
+  author: string;
+  image: string;
+};
+
+export type BlogPostResponse = {
+  _id: string;
+  title: string;
+  content: string;
+  tags: string[];
+  author: string;
+  isPublished: boolean;
+  publicationDate: Date;
+  createdAt: Date;
+  updatedAt: Date;
+  image: string;
 };
