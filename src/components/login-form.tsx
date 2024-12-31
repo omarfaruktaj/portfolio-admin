@@ -28,7 +28,7 @@ export default function LoginForm() {
 
   useEffect(() => {
     if (auth?.user) {
-      navigate("/", { replace: true });
+      navigate("/");
     }
   }, [auth?.user, navigate]);
 
