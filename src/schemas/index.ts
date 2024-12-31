@@ -262,19 +262,8 @@ const experienceSchema = z.object({
     .trim(),
 
   technologies: z
-    .array(
-      z
-        .string()
-        .min(2, {
-          message: "Technology name must be at least 2 characters long",
-        })
-        .max(100, {
-          message: "Technology name must not exceed 100 characters",
-        })
-    )
-    .min(1, { message: "At least one technology must be provided" }),
-
-  isActive: z.boolean().optional(),
+    .array(optionSchema)
+    .nonempty({ message: "At least one technology must be specified" }),
 });
 
 export {
@@ -297,3 +286,4 @@ export type TestimonialType = z.infer<typeof testimonialSchema>;
 export type AnalyticsType = z.infer<typeof analyticsSchema>;
 export type ContactFormSubmissionType = z.infer<typeof contactFormSchema>;
 export type SkillType = z.infer<typeof skillSchema>;
+export type ExperienceType = z.infer<typeof experienceSchema>;

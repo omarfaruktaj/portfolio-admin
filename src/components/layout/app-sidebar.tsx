@@ -1,4 +1,4 @@
-import { FileText, Folder, Home, Settings, Swords } from "lucide-react";
+import { Briefcase, FileText, Folder, Swords } from "lucide-react";
 
 import {
   Sidebar,
@@ -10,14 +10,14 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import { NavLink } from "react-router";
+import { Link, NavLink } from "react-router";
 
 const items = [
-  {
-    title: "Home",
-    url: "/",
-    icon: Home,
-  },
+  // {
+  //   title: "Home",
+  //   url: "/",
+  //   icon: Home,
+  // },
   {
     title: "Projects",
     url: "projects",
@@ -34,17 +34,26 @@ const items = [
     icon: Swords,
   },
   {
-    title: "Settings",
-    url: "settings",
-    icon: Settings,
+    title: "Experience",
+    url: "experiences",
+    icon: Briefcase,
   },
+  // {
+  //   title: "Settings",
+  //   url: "settings",
+  //   icon: Settings,
+  // },
 ];
 
 export function AppSidebar() {
   return (
     <Sidebar>
       <SidebarContent>
-        <SidebarHeader>{/* <Logo /> */}</SidebarHeader>
+        <SidebarHeader className="text-2xl font-bold text-center py-4">
+          <div className="flex items-center ">
+            <Link to={"/"}>Dashboard</Link>
+          </div>
+        </SidebarHeader>
         <SidebarGroup>
           {/* <SidebarGroupLabel>Application</SidebarGroupLabel> */}
           <SidebarGroupContent>

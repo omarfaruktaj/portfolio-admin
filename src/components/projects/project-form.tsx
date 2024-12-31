@@ -178,6 +178,7 @@ export default function ProjectForm({
                 <FormControl>
                   <MultipleSelector
                     {...field}
+                    creatable
                     defaultOptions={TECHNOLOGY_OPTIONS}
                     placeholder="Select technologies"
                     emptyIndicator="No technologies found"

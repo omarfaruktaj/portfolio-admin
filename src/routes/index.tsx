@@ -2,14 +2,15 @@ import AuthLayout from "@/layout/auth-layout";
 import RootLayout from "@/layout/root-layout";
 import Blog from "@/pages/blog";
 import CreateBlogPost from "@/pages/create-blog";
+import CreateExperience from "@/pages/create-experience";
 import CreateProject from "@/pages/create-project";
 import CreateSkill from "@/pages/create-skill";
-import Home from "@/pages/home";
+import Experiences from "@/pages/experiences";
 import Login from "@/pages/login";
 import NotFound from "@/pages/not-found";
 import Projects from "@/pages/projects";
 import Skills from "@/pages/skills";
-import { createBrowserRouter } from "react-router";
+import { createBrowserRouter, Navigate } from "react-router";
 import PrivateRoute from "./private-route";
 
 const router = createBrowserRouter([
@@ -23,7 +24,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Home />,
+        element: <Navigate to="/projects" />,
       },
       {
         path: "/projects",
@@ -48,6 +49,14 @@ const router = createBrowserRouter([
       {
         path: "/skills/new",
         element: <CreateSkill />,
+      },
+      {
+        path: "/experiences",
+        element: <Experiences />,
+      },
+      {
+        path: "/experiences/new",
+        element: <CreateExperience />,
       },
     ],
   },

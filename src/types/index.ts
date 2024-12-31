@@ -71,3 +71,26 @@ export type SkillResponse = {
   category: string;
   proficiency: string;
 };
+
+export type Experience = {
+  jobTitle: string;
+  companyName: string;
+  startDate: Date;
+  description: string;
+  technologies: string[];
+  location?: string;
+  endDate?: Date;
+  author: string;
+};
+
+export type ExperienceResponse = {
+  _id: string;
+  jobTitle: string;
+  companyName: string;
+  startDate: Date;
+  description: string;
+  technologies: string[];
+  location?: string;
+  endDate?: Date;
+  author: string;
+};

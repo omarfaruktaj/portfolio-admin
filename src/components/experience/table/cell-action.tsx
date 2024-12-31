@@ -5,7 +5,7 @@ import { useState } from "react";
 import { Edit, MoreHorizontal, Trash } from "lucide-react";
 import { toast } from "sonner";
 
-import { deleteSkill } from "@/actions/skill";
+import { deleteExperience } from "@/actions/experience";
 import AlertModal from "@/components/alert-model";
 import Modal from "@/components/model";
 import { Button } from "@/components/ui/button";
@@ -17,27 +17,27 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { SkillResponse } from "@/types";
+import { ExperienceResponse } from "@/types";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import SkillForm from "../skill-form";
+import ExperienceForm from "../experience-form";
 
-export function CellAction({ data }: { data: SkillResponse }) {
+export function CellAction({ data }: { data: ExperienceResponse }) {
   const [open, setOpen] = useState(false);
   const [openUpdateModel, setOpenUpdateModel] = useState(false);
 
   const queryClient = useQueryClient();
 
   const mutation = useMutation({
-    mutationFn: deleteSkill,
+    mutationFn: deleteExperience,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["skills"] });
-      toast.success("Skill Deleted Successfully");
+      queryClient.invalidateQueries({ queryKey: ["experiences"] });
+      toast.success("Experience Deleted Successfully");
     },
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     onError: (error: any) => {
       toast.error(
         error?.response?.data?.message ||
-          "Skill Deleting failed. Please try again."
+          "Experience Deleting failed. Please try again."
       );
     },
   });
@@ -57,14 +57,14 @@ export function CellAction({ data }: { data: SkillResponse }) {
         onConfirm={onDelete}
       />
       <Modal
-        title="Update Skill"
+        title="Update Experience"
         onClose={() => setOpenUpdateModel(false)}
         isOpen={openUpdateModel}
         className="min-h-5/6"
       >
         <ScrollArea className="h-full ">
           <div className="p-4">
-            <SkillForm
+            <ExperienceForm
               initialData={data}
               onSuccess={() => {
                 setOpenUpdateModel(false);

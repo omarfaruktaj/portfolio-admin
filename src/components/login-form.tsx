@@ -37,7 +37,7 @@ export default function LoginForm() {
     onSuccess: (data: LoginResponseData) => {
       console.log(data.accessToken);
       localStorage.setItem("access_token", data.accessToken);
-      navigate("/");
+      navigate("/projects");
       toast.success("Successfully logged in");
     },
     onError: (error: Error) => {
