@@ -35,9 +35,10 @@ export default function LoginForm() {
   const mutation = useMutation({
     mutationFn: loginUser,
     onSuccess: (data: LoginResponseData) => {
-      console.log(data.accessToken);
+      console.log(data);
       localStorage.setItem("access_token", data.accessToken);
       navigate("/projects");
+      navigate(0);
       toast.success("Successfully logged in");
     },
     onError: (error: Error) => {

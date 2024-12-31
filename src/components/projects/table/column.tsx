@@ -23,11 +23,11 @@ export const columns: ColumnDef<ProjectResponse>[] = [
     header: "Title",
     cell: ({ row }) => <div>{row.original.title}</div>,
   },
-  {
-    accessorKey: "description",
-    header: "Description",
-    cell: ({ row }) => <div>{row.original.description}</div>,
-  },
+  // {
+  //   accessorKey: "description",
+  //   header: "Description",
+  //   cell: ({ row }) => <div>{row.original.description}</div>,
+  // },
   {
     accessorKey: "technologies",
     header: "Technologies",
